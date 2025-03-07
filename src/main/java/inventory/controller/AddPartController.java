@@ -1,5 +1,6 @@
 package inventory.controller;
 
+import inventory.exception.ValidationException;
 import inventory.model.Part;
 import inventory.service.InventoryService;
 import javafx.event.ActionEvent;
@@ -149,25 +150,24 @@ public class AddPartController implements Initializable, Controller {
         String min = minTxt.getText();
         String max = maxTxt.getText();
         String partDynamicValue = addPartDynamicTxt.getText();
-        errorMessage = "";
-        
+
         try {
-            errorMessage = Part.isValidPart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), errorMessage);
-            if(errorMessage.length() > 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
-                alert.setHeaderText("Error!");
-                alert.setContentText(errorMessage);
-                alert.showAndWait();
+            if (isOutsourced) {
+                service.addOutsourcePart(name, Double.parseDouble(price),
+                        Integer.parseInt(inStock), Integer.parseInt(min),
+                        Integer.parseInt(max), partDynamicValue);
             } else {
-               if(isOutsourced == true) {
-                    service.addOutsourcePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
-                } else {
-                    service.addInhousePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(partDynamicValue));
-                }
-                displayScene(event, "/fxml/MainScreen.fxml");
+                service.addInhousePart(name, Double.parseDouble(price),
+                        Integer.parseInt(inStock), Integer.parseInt(min),
+                        Integer.parseInt(max), Integer.parseInt(partDynamicValue));
             }
-            
+            displayScene(event, "/fxml/MainScreen.fxml");
+        } catch (ValidationException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Adding Part");
+            alert.setHeaderText("Invalid Part Information");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         } catch (NumberFormatException e) {
             System.out.println("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

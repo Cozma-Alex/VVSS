@@ -1,6 +1,8 @@
 
 package inventory.controller;
 
+import inventory.exception.PartNotFoundException;
+import inventory.exception.ProductNotFoundException;
 import inventory.model.Part;
 import inventory.model.Product;
 import inventory.service.InventoryService;
@@ -243,7 +245,15 @@ public class MainScreenController implements Initializable,Controller {
     @FXML
     void handlePartsSearchBtn(ActionEvent event) {
         String x = partsSearchTxt.getText();
-        partsTableView.getSelectionModel().select(service.lookupPart(x));
+        try{
+            partsTableView.getSelectionModel().select(service.lookupPart(x));
+        } catch(PartNotFoundException e){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Part Not Found");
+            alert.setHeaderText("Search Error");
+            alert.setContentText("No part found matching: " + x);
+            alert.showAndWait();
+        }
     }
 
     /**
@@ -253,7 +263,16 @@ public class MainScreenController implements Initializable,Controller {
     @FXML
     void handleProductsSearchBtn(ActionEvent event) {
         String x = productsSearchTxt.getText();
-        productsTableView.getSelectionModel().select(service.lookupProduct(x));
+        try{
+            productsTableView.getSelectionModel().select(service.lookupProduct(x));
+        } catch (ProductNotFoundException e){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Product Not Found");
+            alert.setHeaderText("Search Error");
+            alert.setContentText("No product found matching: " + x);
+            alert.showAndWait();
+        }
+
     }
 
 }
