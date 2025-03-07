@@ -1,5 +1,8 @@
 package inventory.controller;
 
+import inventory.exception.PartNotFoundException;
+import inventory.exception.ProductNotFoundException;
+import inventory.exception.ValidationException;
 import inventory.model.Part;
 import inventory.model.Product;
 import inventory.service.InventoryService;
@@ -163,6 +166,14 @@ public class ModifyProductController implements Initializable, Controller {
     @FXML
     void handleDeleteProduct(ActionEvent event) {
         Part part = deleteProductTableView.getSelectionModel().getSelectedItem();
+        if(part == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error Deleting Part!");
+            alert.setHeaderText("Error!");
+            alert.setContentText("No part selected to delete.");
+            alert.showAndWait();
+            return;
+        }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initModality(Modality.NONE);
@@ -226,20 +237,18 @@ public class ModifyProductController implements Initializable, Controller {
         String inStock = inventoryTxt.getText();
         String min = minTxt.getText();
         String max = maxTxt.getText();
-        errorMessage = "";
         
         try {
-            errorMessage = Product.isValidProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts, errorMessage);
-            if(errorMessage.length() > 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
-                alert.setHeaderText("Error!");
-                alert.setContentText(errorMessage);
-                alert.showAndWait();
-            } else {
-                service.updateProduct(productIndex, productId, name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
-                displayScene(event, "/fxml/MainScreen.fxml");
-            }
+            service.updateProduct(productIndex, productId, name,
+                    Double.parseDouble(price), Integer.parseInt(inStock),
+                    Integer.parseInt(min), Integer.parseInt(max), addParts);
+            displayScene(event, "/fxml/MainScreen.fxml");
+        } catch (ValidationException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Updating Product");
+            alert.setHeaderText("Invalid Product Information");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         } catch (NumberFormatException e) {
             System.out.println("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -257,7 +266,15 @@ public class ModifyProductController implements Initializable, Controller {
     @FXML
     void handleSearchProduct(ActionEvent event) {
         String x = productSearchTxt.getText();
-        addProductTableView.getSelectionModel().select(service.lookupPart(x));
+        try{
+            addProductTableView.getSelectionModel().select(service.lookupPart(x));
+        } catch(PartNotFoundException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Part Not Found");
+            alert.setHeaderText("Search Error");
+            alert.setContentText("No part found matching: " + x);
+            alert.showAndWait();
+        }
     }
 
 }

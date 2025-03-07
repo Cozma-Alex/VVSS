@@ -1,5 +1,7 @@
 package inventory.controller;
 
+import inventory.exception.PartNotFoundException;
+import inventory.exception.ValidationException;
 import inventory.model.Part;
 import inventory.model.Product;
 import inventory.service.InventoryService;
@@ -202,20 +204,18 @@ public class AddProductController implements Initializable, Controller {
         String inStock = inventoryTxt.getText();
         String min = minTxt.getText();
         String max = maxTxt.getText();
-        errorMessage = "";
-        
+
         try {
-            errorMessage = Product.isValidProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts, errorMessage);
-            if(errorMessage.length() > 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
-                alert.setHeaderText("Error!");
-                alert.setContentText(errorMessage);
-                alert.showAndWait();
-            } else {
-                service.addProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
-                displayScene(event, "/fxml/MainScreen.fxml");
-            }
+            service.addProduct(name, Double.parseDouble(price),
+                    Integer.parseInt(inStock), Integer.parseInt(min),
+                    Integer.parseInt(max), addParts);
+            displayScene(event, "/fxml/MainScreen.fxml");
+        } catch (ValidationException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Adding Product");
+            alert.setHeaderText("Invalid Product Information");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         } catch (NumberFormatException e) {
             System.out.println("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -234,7 +234,15 @@ public class AddProductController implements Initializable, Controller {
     @FXML
     void handleSearchProduct(ActionEvent event) {
         String x = productSearchTxt.getText();
-        addProductTableView.getSelectionModel().select(service.lookupPart(x));
+        try{
+            addProductTableView.getSelectionModel().select(service.lookupPart(x));
+        } catch(PartNotFoundException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Part Not Found");
+            alert.setHeaderText("Search Error");
+            alert.setContentText("No part found matching: " + x);
+            alert.showAndWait();
+        }
     }
 
 
