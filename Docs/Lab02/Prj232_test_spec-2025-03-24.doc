@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>testspec Proiect232 - cgir3317_BBT</title>
+<link type="text/css" rel="stylesheet" href="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+</head>
+<body>
+<div>
+<div style="float:right;">TestLink Community [configure $tlCfg-&gt;document_generator-&gt;company_name]</div>
+<div>&nbsp;</div><hr />
+<p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo"  width= height= src="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></p></div>
+<div class="doc_title"><p>Test Specification</p></div>
+<div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Proiect232<br/>Test Suite: Proiect232 - cgir3317_BBT</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 24/03/2025</p></div>
+<div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
+<h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><p style="padding-left: 20px;"><b><a href="#toc_1">1.cgir3317_BBT</a></b></p>
+<p style="padding-left: 45px;"><a href="#toc_tc23915">Prj232-15: ECP-Valid_Test_Case</a></p><p style="padding-left: 45px;"><a href="#toc_tc23920">Prj232-16: ECP-Invalid_Test_Case</a></p><p style="padding-left: 45px;"><a href="#toc_tc23925">Prj232-18: BVA-Valid_Test_Case</a></p><p style="padding-left: 45px;"><a href="#toc_tc23930">Prj232-20: BVA-Invalid_Test_Case</a></p></div><h1 class="doclevel" >Scope</h1>
+<div class="txtlevel"><p>Proiect de testare pentru studentii din grupa 232.</p></div>
+ <br/><a name='toc_1'></a>
+<h1 class='doclevel'>1.Test Suite : cgir3317_BBT</h1>
+<div><p>Se testeaza adaugarea de piese/produse</p>
+</div><a name="toc_tc23915"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj232-15: ECP-Valid_Test_Case&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">cgir3317</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Se adauga o parte&nbsp;cu numarul de inventar mai mare sau egal cu numarul minim, si mai mic sau egal cu numarul maxim</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><pre>
+inStock &isin; [min, max]</pre>
+
+<p>Restul campurilor sunt valide.</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Se adauga o parte.</p>
+
+<p>name = &quot;Parte&quot;</p>
+
+<p>price = 200.0</p>
+
+<p>inStock = 100</p>
+
+<p>min = 50</p>
+
+<p>max = 200</p>
+
+<p>companyName= &quot;Companie&quot;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</td><td><p>Partea este adaugata cu succes.&nbsp;</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3">0.50</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">cgir3317_F01:  AdaugarePiesa [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc23920"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj232-16: ECP-Invalid_Test_Case&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">cgir3317</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Se adauga o parte cu numarul de inventar mai mic strict decat&nbsp;numarul minim.</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>inStock &isin; (-inf&nbsp;, min)</p>
+
+<p>Restul campurilor sunt valide</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Se adauga o parte.</p>
+
+<p>name = &quot;Parte&quot;</p>
+
+<p>price = 200.0</p>
+
+<p>inStock = 30</p>
+
+<p>min = 50</p>
+
+<p>max = 200</p>
+
+<p>companyName= &quot;Companie&quot;</p>
+</td><td><p>Partea nu este adaugata.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3">0.50</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">cgir3317_F01:  AdaugarePiesa [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc23925"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj232-18: BVA-Valid_Test_Case&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">cgir3317</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Se adauga o piesa cu numarul de inventar egal cu numarul maxim.</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>inStock = max</p>
+
+<p>Restul campurilor sunt valide.</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Se adauga o parte.</p>
+
+<p>name = &quot;Parte&quot;</p>
+
+<p>price = 200.0</p>
+
+<p>inStock = 200</p>
+
+<p>min = 50</p>
+
+<p>max = 200</p>
+
+<p>companyName= &quot;Companie&quot;</p>
+</td><td><p>Partea este adaugata cu succes.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3">0.50</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">cgir3317_F01:  AdaugarePiesa [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc23930"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj232-20: BVA-Invalid_Test_Case&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">cgir3317</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Se adauga o parte&nbsp;cu numarul de inventar mai mare decat maxim cu o unitate.<br />
+&nbsp;</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>inStock&nbsp; = max + 1<br />
+Restul campurilor sunt valide.</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Se adauga o parte.</p>
+
+<p>name = &quot;Parte&quot;</p>
+
+<p>price = 200.0</p>
+
+<p>inStock = 201</p>
+
+<p>min = 50</p>
+
+<p>max = 200</p>
+
+<p>companyName= &quot;Companie&quot;</p>
+</td><td><p>Nu se adauga partea.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3">0.50</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">High</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">cgir3317_F01:  AdaugarePiesa [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+
+</body>
+</html>
