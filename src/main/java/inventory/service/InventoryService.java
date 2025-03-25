@@ -4,6 +4,8 @@ import inventory.model.*;
 import inventory.repository.InventoryRepository;
 import javafx.collections.ObservableList;
 
+import java.util.Objects;
+
 public class InventoryService {
 
     private InventoryRepository repo;
@@ -16,7 +18,12 @@ public class InventoryService {
         repo.addPart(inhousePart);
     }
     public void addOutsourcePart(String name, double price, int inStock, int min, int  max, String partDynamicValue){
-        OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
+         String error = Part.isValidPart(name, price, inStock, min, max, "");
+         if(!Objects.equals(error, ""))
+         {
+             return;
+         }
+         OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
         repo.addPart(outsourcedPart);
     }
 
