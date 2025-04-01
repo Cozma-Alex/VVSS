@@ -85,6 +85,10 @@ O,85,Parte_de_test,10.0,5,5,15,Firma_de_test
 O,86,Parte_de_test,10.0,4,5,15,Firma_de_test
 O,87,Parte_de_test,1.7976931348623157E308,10,5,15,Firma_de_test
 O,88,Parte_de_test,-1.0E-6,10,5,15,Firma_de_test
+O,89,Parte_de_test,10.0,30,20,40,Firma_de_test
+O,90,Parte_de_test,100.5,10,5,15,Firma_de_test
+O,91,Parte_de_test,10.0,5,5,15,Firma_de_test
+O,92,Parte_de_test,1.7976931348623157E308,10,5,15,Firma_de_test
 P,1,Clock,7.45,7,2,20,1:2:3
 P,2,product2,12.34,12,1,12,4
 P,4,products4,11.0,2,1,10,5:8:7:7
