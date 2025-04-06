@@ -46,7 +46,9 @@ public class Inventory {
      * @return
      */
     public Product lookupProduct(String searchItem) {
-        boolean isFound = false;
+
+        if(searchItem == null)
+            return null;
         for (Product p : products) {
             if (p.getName().contains(searchItem)) {
                 return p;
@@ -55,12 +57,8 @@ public class Inventory {
                     return p;
                 }
             }
-            isFound = true;
         }
-        if (isFound == false) {
-            Product product = new Product(0, null, 0.0, 0, 0, 0, null);
-            return product;
-        }
+
         return null;
     }
 

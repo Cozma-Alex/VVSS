@@ -1,0 +1,282 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Inventory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">inventory.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Inventory (inventory.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Inventory</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    17.6%
+  </span>
+  <span class="absValue">
+    (3/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    48.6%
+  </span>
+  <span class="absValue">
+    (18/37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package inventory.model;
+&nbsp;
+&nbsp;import javafx.collections.FXCollections;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;
+&nbsp;public class Inventory {
+&nbsp;
+&nbsp;    // Declare fields
+&nbsp;    private ObservableList&lt;Product&gt; products;
+&nbsp;    private ObservableList&lt;Part&gt; allParts;
+&nbsp;    private int autoPartId;
+&nbsp;    private int autoProductId;
+&nbsp;
+<b class="fc">&nbsp;    public Inventory() {</b>
+<b class="fc">&nbsp;        this.products = FXCollections.observableArrayList();</b>
+<b class="fc">&nbsp;        this.allParts = FXCollections.observableArrayList();</b>
+<b class="fc">&nbsp;        this.autoProductId = 0;</b>
+<b class="fc">&nbsp;        this.autoPartId = 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Declare methods
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add new product to observable list products
+&nbsp;     *
+&nbsp;     * @param product
+&nbsp;     */
+&nbsp;    public void addProduct(Product product) {
+<b class="fc">&nbsp;        products.add(product);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Remove product from observable list products
+&nbsp;     *
+&nbsp;     * @param product
+&nbsp;     */
+&nbsp;    public void removeProduct(Product product) {
+<b class="nc">&nbsp;        products.remove(product);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Accepts search parameter and if an ID or name matches input, that product is returned
+&nbsp;     *
+&nbsp;     * @param searchItem
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    public Product lookupProduct(String searchItem) {
+<b class="fc">&nbsp;        boolean isFound = false;</b>
+<b class="fc">&nbsp;        for (Product p : products) {</b>
+<b class="fc">&nbsp;            if (p.getName().contains(searchItem)) {</b>
+<b class="fc">&nbsp;                return p;</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                if ((p.getProductId() + &quot;&quot;).equals(searchItem)) {</b>
+<b class="fc">&nbsp;                    return p;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;            isFound = true;</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        if (isFound == false) {</b>
+<b class="fc">&nbsp;            Product product = new Product(0, null, 0.0, 0, 0, 0, null);</b>
+<b class="fc">&nbsp;            return product;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update product at given index
+&nbsp;     *
+&nbsp;     * @param index
+&nbsp;     * @param product
+&nbsp;     */
+&nbsp;    public void updateProduct(int index, Product product) {
+<b class="nc">&nbsp;        products.set(index, product);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Getter for Product Observable List
+&nbsp;     *
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    public ObservableList&lt;Product&gt; getProducts() {
+<b class="nc">&nbsp;        return products;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setProducts(ObservableList&lt;Product&gt; list) {
+<b class="nc">&nbsp;        products = list;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add new part to observable list allParts
+&nbsp;     *
+&nbsp;     * @param part
+&nbsp;     */
+&nbsp;    public void addPart(Part part) {
+<b class="nc">&nbsp;        allParts.add(part);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Removes part passed as parameter from allParts
+&nbsp;     *
+&nbsp;     * @param part
+&nbsp;     */
+&nbsp;    public void deletePart(Part part) {
+<b class="nc">&nbsp;        allParts.remove(part);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Accepts search parameter and if an ID or name matches input, that part is returned
+&nbsp;     *
+&nbsp;     * @param searchItem
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    public Part lookupPart(String searchItem) {
+<b class="nc">&nbsp;        for (Part p : allParts) {</b>
+<b class="nc">&nbsp;            if (p.getName().contains(searchItem) || (p.getPartId() + &quot;&quot;).equals(searchItem)) return p;</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update part at given index
+&nbsp;     *
+&nbsp;     * @param index
+&nbsp;     * @param part
+&nbsp;     */
+&nbsp;    public void updatePart(int index, Part part) {
+<b class="nc">&nbsp;        allParts.set(index, part);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Getter for allParts Observable List
+&nbsp;     *
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    public ObservableList&lt;Part&gt; getAllParts() {
+<b class="nc">&nbsp;        return allParts;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @param list
+&nbsp;     */
+&nbsp;    public void setAllParts(ObservableList&lt;Part&gt; list) {
+<b class="nc">&nbsp;        allParts = list;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Method for incrementing part ID to be used to automatically
+&nbsp;     * assign ID numbers to parts
+&nbsp;     *
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    public int getAutoPartId() {
+<b class="nc">&nbsp;        autoPartId++;</b>
+<b class="nc">&nbsp;        return autoPartId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Method for incrementing product ID to be used to automatically
+&nbsp;     * assign ID numbers to products
+&nbsp;     *
+&nbsp;     * @return
+&nbsp;     */
+&nbsp;    public int getAutoProductId() {
+<b class="nc">&nbsp;        autoProductId++;</b>
+<b class="nc">&nbsp;        return autoProductId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public void setAutoPartId(int id) {
+<b class="nc">&nbsp;        autoPartId = id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAutoProductId(int id) {
+<b class="nc">&nbsp;        autoProductId = id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-04-06 21:44</div>
+</div>
+</body>
+</html>

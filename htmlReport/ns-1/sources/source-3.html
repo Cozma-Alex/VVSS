@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > OutsourcedPart</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">inventory.model</a>
+</div>
+
+<h1>Coverage Summary for Class: OutsourcedPart (inventory.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">OutsourcedPart</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;
+&nbsp;package inventory.model;
+&nbsp;
+&nbsp;
+&nbsp;public class OutsourcedPart extends Part {
+&nbsp;    
+&nbsp;    // Declare fields
+&nbsp;    private String companyName;
+&nbsp;
+&nbsp;    // Constructor
+&nbsp;    public OutsourcedPart(int partId, String name, double price, int inStock, int min, int max, String companyName) {
+<b class="nc">&nbsp;        super(partId, name, price, inStock, min, max);</b>
+<b class="nc">&nbsp;        this.companyName = companyName;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    // Getter
+&nbsp;    public String getCompanyName() {
+<b class="nc">&nbsp;        return companyName;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    // Setter
+&nbsp;    public void setCompanyName(String companyName) {
+<b class="nc">&nbsp;        this.companyName = companyName;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return &quot;O,&quot;+super.toString()+&quot;,&quot;+getCompanyName();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-04-06 21:44</div>
+</div>
+</body>
+</html>
