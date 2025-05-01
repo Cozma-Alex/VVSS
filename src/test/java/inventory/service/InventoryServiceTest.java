@@ -60,8 +60,8 @@ class InventoryServiceTest {
 
     }
     @Order(2)
+    @Test
     @DisplayName("ECP2: Add outsourced part with invalid price - negative equivalence class")
-    @RepeatedTest(3)
     void addOutsourcedPart_withNegativePrice() {
         // Arrange
         this.price = -100;
