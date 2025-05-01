@@ -114,11 +114,15 @@
         <version>3.6.1</version>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.1</version>
         <configuration>
           <argLine>
-            --add-opens java.base/java.lang=ALL-UNNAMED
+            --add-opens inventory/inventory.model=ALL-UNNAMED
+            --add-opens inventory/inventory=ALL-UNNAMED
+            --add-opens inventory/inventory.controller=ALL-UNNAMED
+            --add-opens inventory/inventory.repository=ALL-UNNAMED
           </argLine>
         </configuration>
       </plugin>
