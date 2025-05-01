@@ -123,6 +123,7 @@
             --add-opens inventory/inventory=ALL-UNNAMED
             --add-opens inventory/inventory.controller=ALL-UNNAMED
             --add-opens inventory/inventory.repository=ALL-UNNAMED
+            --add-opens inventory/inventory.service=ALL-UNNAMED
           </argLine>
         </configuration>
       </plugin>
