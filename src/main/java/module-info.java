@@ -12,4 +12,5 @@ module inventory {
     opens inventory.repository to org.mockito;
     exports inventory.repository;
     opens inventory.service to javafx.fxml, org.junit.jupiter.api;
+    opens inventory.Integration to javafx.fxml, org.junit.jupiter.api;
 }
